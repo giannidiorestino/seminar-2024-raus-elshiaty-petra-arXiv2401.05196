@@ -1,0 +1,221 @@
+\RequirePackage{etex} 
+
+\documentclass[12pt,a4paper]{amsart}
+
+\usepackage{accents}
+\usepackage{cleveref}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{macros}
+\usepackage{mathtools}
+\usepackage{natbib}
+
+\title{Seminar}
+\author{Giovanni Pistone}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+
+\section{Exponential family and exponential transport}
+
+We first review the standard theory of exponential families on a finite state space as sub-spaces of the statistical bundle. See, for example, \cite{brown:86}, \cite{efron|hastie:2016}, \cite{pistone:2020-NPCS}, and \cite{chirco|pistone:2022}.
+
+Let $v_1, \dots, v_n$ be  affinely independent random variables on the finite state space $X$. Hence, the family $\set{v_1,\dots,v_n, 1}$ is linearly independent and each random variable $v \in V = \spanof{v_1,\dots,v_n, 1}$ defines uniquely the coefficients of a linear combination $v = \sum_j \theta_j(v) v_j - \psi$. The exponential family on $V$, $\maxexpat V$, is the set of probability functions $q$ such that $\log q \in V$.
+
+  The exponential family is paraterized by
+\begin{equation}
+  \label{eq:parameters-exponential-family}
+  \reals^n \ni \theta \mapsto \expof{\sum_j \theta_j v_j - \psi(\theta)} = q \in \maxexpat V \ ,
+\end{equation}
+with
+\begin{equation}
+  \label{eq:psi-function}
+  \phi(\theta) = \log \sum_x \expof{\sum_j \theta_j v_j(x)} \ .
+\end{equation}
+Recall that
+\begin{equation}
+  \label{eq:partial-psi}
+  \pderivby {\theta_j} \psi(\theta) = \expectat {q(\theta)} {v_j} \ .
+\end{equation}
+
+If $t \mapsto q(t)$ is a smooth curve (a regular 1-dimensional statistical model) in $\maxexpat V$, then
+\begin{equation}
+  \label{eq:curve-in-exponential-family}
+  \log q(t) = \sum_j \theta_j(t) v_j - \psi(\theta(t)) \in V \ ,
+\end{equation} 
+and the Fisher's score is
+\begin{equation}
+  \label{eq:Fisher-score}
+  \derivby t \log q(t) = \sum_j \dot \theta_j(t) v_j - \partial_j\psi(\theta(t)) \dot \theta_j(t) = \sum_j \dot \theta_j(t) (v_j - \expectat {q(t)} {v_j}) \ .
+\end{equation}
+
+For all $p \in \maxexpat V$ we define the subspace $V_p \subset V$ by
+\begin{equation}
+V_p = \setof{v \in V}{ \expectat p v = 0} \ .
+\end{equation}
+The set $\set{v_1 - \expectat p {v_1}, \dots, v_n - \expectat p {v_n}}$ is clearly a vector basis for $V_p$.
+The statistical bundle on $V$ is
+\begin{equation}
+  \label{eq:statistical-bundle}
+  S\maxexpat V = \setof {(q,v)} {q \in \maxexpat V, v \in V_q} \ .
+\end{equation}
+Clearly, each fibre $S_q\maxexpat V = V_p$ is the set of all possible Fisher's scores at $q$.
+
+For all $p,q \in \maxexpat V$ we define the transport mapping
+\begin{equation}
+    \etransport p q \colon V_p \to V_q \ , 
+\end{equation}
+by \begin{equation}
+    \etransport p q v = v - \expectat q v \ .
+  \end{equation}
+In coordinates, $v = \sum_j \theta_j (v_j - \expectat p {v_j}$ maps to $w = \sum_j \theta_j (v_j - \expectat q {v_j}$, hence the transport is expressed by the identity.
+  
+For each $p,q \in \maxexpat V$, define the affine displacement
+ \begin{equation}
+     (p,q) \mapsto s_p(q) = \log \frac q p - \expectat p {\log \frac q p} \ .
+   \end{equation}
+Clearly, the affine displacement satisfies the parallelogram lax
+\begin{equation}
+  \label{eq:parallelogram-law}
+  s_p(q) + \etransport q p s_q(r) = s_p(r) \ , \quad p,q,r \in \maxexpat V \ .
+\end{equation}
+
+ For each fixed $p$, the mapping
+ \begin{equation}
+     \maxexpat V \ni q \mapsto s_p(q) \in V_p
+ \end{equation}
+ is onto with inverse
+ \begin{equation}
+     s_p^{-1}(v) = e_p(v) = \euler^{v - K_p(v)} \cdot p \ , \quad v \in V_p \ ,
+ \end{equation}
+ with
+ \begin{equation}
+     K_p(v) = \log \expectat p {\euler^v} = \KL p q \ .
+   \end{equation}
+
+ If $v = \sum_j \theta_j \left(v_j - \expectat p {v_j}\right) \in V_p$, then
+ \begin{equation}
+   \label{eq:p-parameterization}
+   e_p(v) = \expof{\sum_j \theta_j \left(v_j - \expectat p {v_j}\right) - \psi_p(\theta(p))} \cdot p\ ,
+ \end{equation}
+ with $\psi_p(\theta(p)) = \KL p {e_p(v)}$.
+   
+ The affine velocity of a smooth curve 
+ \begin{equation}
+ t \mapsto q(t) = \euler^{v(t) - K_p(v(t)} \cdot p \in \maxexpat V \ , \quad t \mapsto v(t) \in V_p \ ,    
+ \end{equation} in the chart at $p$ is 
+ \begin{equation}
+     \derivby t s_p(q(t)) = \derivby t v(t) - K_p(v(t)) = \dot v(t) - \expectat {q(t)} {\dot v(t)}  .
+ \end{equation}
+ In the moving frame $p = q(t)$, we have
+ \begin{equation}
+   \velocity q(t) = \dot v(t)- \expectat {q(t)}{\dot v(t)} =  \frac {\dot q(t)} {q(t)} \ , \end{equation}
+ and the velocity equals the Fisher's score.
+
+ In coordinates, if $v(t) = \sum_j \theta_j(t) \left(v_j - \expectat {q(t)}{v_j}\right)$
+ \begin{equation}
+   \label{eq:1}
+   q(t) = e_p(v(t)) = \expof{\sum_j \theta_j(t) \left(v_j - \expectat {q(t)}{v_j}\right) - K_p\left(\sum_j \theta_j(t) \left(v_j - \expectat {q(t)}{v_j}\right)\right)} \cdot p \ ,
+ \end{equation}
+ \begin{equation}
+   \label{eq:2}
+   \log q(t) = \sum_j \theta_j(t) \left(v_j - \expectat {p}{v_j}\right) - K_p\left(\sum_j \theta_j(t) \left(v_j - \expectat {p}{v_j}\right)\right) + \log p \ ,
+ \end{equation}
+hence
+   \begin{equation}
+   \velocity q(t) = \sum_j \dot \theta_j(t) \left(v_j - \expectat {p}{v_j} - \expectat {q(t)} {v_j} + \expectat p {v_j}\right) = \sum_j \dot \theta_j(t) \left(v_j - \expectat {q(t)} {v_j}\right) \ .
+   \end{equation}
+
+\section{Dual transport}
+
+Let us compute the dual of the transport $\etransport p q$ in the restriction of the inner product to $V_p$ that is, 
+\begin{equation}
+V_p^2 \ni (v,w) \mapsto \scalarat p v w = \expectat p {vw} = \scalarat p v w \ , \quad p \in \maxexpat V \ . 
+\end{equation}
+
+For all $v \in V_p$ and $w \in V_q$ we apply the global duality $\left(\etransport p q\right)^T = \mtransport q p$ followed by the $p$-orthogonal projection onto $V_p$,
+\begin{equation}
+    \scalarat q {\etransport p q v} w = \scalarat p v {\mtransport q p w} = \scalarat p v {\Pi(p) \mtransport {q}{p} w} \ ,
+\end{equation}
+where $\Pi(p)$ is the $p$-orthogonal projection $\Pi(p) \colon V \to V_p$. In conclusion, \begin{equation}
+\left(\etransport p q\right)^T = \Pi(p) \circ \mtransport q p \quad \text{with} \quad \mtransport q p w = \frac q p w \ . 
+\end{equation}
+If $w_p = \left(\etransport p q\right)^T w$, then for all $v \in V_p$ we have
+\begin{equation} \label{eq:orthogonality}
+    \scalarat p {w_p} v = \scalarat p {\frac q p w} v = \expectat q {w v} \ . 
+\end{equation}
+
+In coordinates, if we take $v= (v_i - \expectat p {v_i})$,
+\begin{gather}
+    w = \sum_j \theta_j(q) (v_j - \expectat q {v_j}) \ , \quad \text{and} \\
+    w_p = \sum_j \theta_j(p)  (v_j - \expectat p {v_j}) \ , 
+\end{gather}
+then \eqref{eq:orthogonality} becomes, for all $i,j = 1,\dots,n$,
+\begin{equation}
+  \label{eq:normal-equations}
+ \sum_j \theta_j(p) \expectat p {(v_j - \expectat p {v_j})(v_i - \expectat p {v_i})} = \sum_j \theta_j(q) \expectat q {(v_j - \expectat q {v_j})(v_i - \expectat p {v_i})} \ . 
+\end{equation}
+
+We recognize the Fisher's information matrix
+\begin{equation}
+  \label{eq:Fisher-matrix}
+  I(p) = \left[\expectat p {(v_j - \expectat p {v_j})(v_i - \expectat p {v_i})}\right]_{ij} \ .
+\end{equation}
+Notice that
+\begin{equation}
+\expectat q {(v_j - \expectat q {v_j})(v_i - \expectat p {v_i})} = I_{ij}(q) + \expectat q {(v_j - \expectat q {v_j})}(\expectat q {v_i} - \expectat p {v_i}) = I_{ij}(q)   
+\end{equation}
+\Cref{eq:normal-equations} becomes
+\begin{equation}
+\sum_j \theta_j(p) I_{ij}(p) = \sum_j \theta_j(q) I_{ij}(q)
+\end{equation}
+or, in vector form,
+\begin{equation}
+  \label{eq:vector-normal-equations}
+  I(p) \theta(p) = I(q) \theta(q) \ .
+\end{equation}
+Notice that
+\begin{equation}
+  \left(I^{-1}(r)I(q)\right)\left(I^{-1}(q)I(p)\right) = \left(I^{-1}(r)I(p)\right) \ .
+\end{equation}
+
+In conclusion, the expression of $(\etransport p q)^T$ in the basis $v_1,\dots,v_n$ is
+\begin{equation}
+  \theta(p) \mapsto \theta(q) = I^{-1}(q)I(p) \theta(p) \ .
+\end{equation}
+
+\section{Mixture geodesic}
+\label{sec:mixture-geodesic}
+
+A geodesic for the transport $\transport p q = \left(\etransport q p\right)^T$ is a curve $J \ni t \mapsto q(t) \in \maxexpat V$ such that the velocity is constant, that is,
+\begin{equation}
+  \label{eq:geodesic}
+  \velocity q(t) = \transport {q(s)} {q(t)} \velocity q(s) \ , \quad s,t \in J \ .
+\end{equation}
+If we write $\transport {q(s)}{q(t)} = \left(\transport {q(t)} q\right)^{-1} \transport {q(s)} q$, 
+\cref{eq:geodesic} becomes
+\begin{equation}
+\label{eq:geodesic-2}
+\transport {q(t)} q \velocity q(t) = \transport {q(s)} q \velocity q(s) \ .    
+\end{equation}
+In the basis $\left(v_1,\dots,v_n\right)$, $q(t) = \expof{\sum_j \theta_j(t) v_j - \psi(\theta)}$ \cref{eq:geodesic} becomes
+\begin{equation}
+ \sum_j \dot \theta_j(t) \left(v_j - \expectat {q(t)} {v_j} \right) = \sum_{ijk} I_{ik}^{-1}(q(t)) I_{kj}(q(s)) \dot \theta_j(s) \left(v_j - \expectat {q(s)} {v_j}\right)  
+\end{equation}
+
+% \bibliographystyle{amsplain}
+\bibliographystyle{plainnat}
+\bibliography{tutto}
+
+\end{document}
+
+%%% reftex-default-bibliography: ("path/to/bibfile.bib")
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
