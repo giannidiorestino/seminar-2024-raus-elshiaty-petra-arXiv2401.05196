@@ -91,7 +91,7 @@ that is,
 The velocity of the curve $\eta \mapsto p_\eta$ is
 \begin{equation}
   \label{eq:13}
-  \derivby \eta \log p_\eta = \derivby \eta (\log \eta u - \eta - log u!) = \frac 1 \eta u - 1  
+  \derivby \eta \log p_\eta = \derivby \eta (\log \eta u - \eta - \log u!) = \frac 1 \eta u - 1  
 \end{equation}
 and the velocity of the curve $\theta \mapsto p_{\euler^\theta}$ is 
 \begin{equation}
@@ -99,25 +99,46 @@ and the velocity of the curve $\theta \mapsto p_{\euler^\theta}$ is
   \derivby \theta \log p_{\euler^\theta} = \derivby \theta (\theta u - \euler^\theta - \log u!) = u - \euler^\theta \ . 
 \end{equation}
 
-The curve $t \mapsto p_{\eta(t)}$ is a geodesic with velocity $\xi (u - \eta)$ at $\eta(0) = \eta$ if the velocity is constant up to the transport,
+The curve $t \mapsto q(t) = p_{\eta(t)}$ is an exponential geodesic with initial velocity $\xi (u - \eta)$ at $\eta(0) = \eta$ if the velocity is constant up to the exponential transport,
 \begin{equation}
   \label{eq:15}
-  \derivby t \log p_{\eta(t)} = \frac {\dot\eta(t)} {\eta(t)} u - 1 = \xi (u - \eta(t)) \ ,  
+  \derivby t \log p_{\eta(t)} = \left(\frac 1 {\eta(t)} u - 1\right) \dot \eta(t) = \frac {u - \eta(t)} {\eta(t)} \dot \eta(t)=  \xi (u - \eta(t)) \ ,  
 \end{equation}
 that is,
 \begin{equation}
   \label{eq:16}
-  \dot \eta(t) = \xi (u - \eta(t))\eta(t) \ , \quad \eta(0) = \eta \ .
+  \frac {\dot \eta(t)} {\eta(t)} = \derivby t \log \eta(t) = \xi \ , \quad  \eta(0) = \eta \ .
 \end{equation}
 
-To solve, consider
+It follows $\log \eta(t) = \log \eta + t \xi$, so that
 \begin{equation}
   \label{eq:17}
-  \derivby \eta - \frac 1 u \log \frac {u - \eta} \eta = \frac 1 {(u - \eta) \eta} \ ,
+  \log q(t) = \log \eta(t)u - \eta(t) - u! = (\log \eta + t \xi) u - \euler^{\eta + t \xi} - \log u!  
 \end{equation}
-etc.
+and, clearly the initial conditions are satisfied. Notice that $\theta(t) = \log \eta(t) = \log \eta + t \xi$, an affine function of $t$.
 
-Next step is to compute the dual of $\etransport . .$.
+Let us compute the dual of the e-transport. For each $\xi_1(u - \eta_1) \in \expfibreat {p_{\eta_1}} V$ and $\xi_2(u - \eta_2) \in \expfibreat {p_{\eta_2}} V$,
+\begin{equation}
+  \label{eq:4}
+  \scalarat {p_{\eta_2}} {\etransport {p_{\eta_1}}{p_{\eta_2}} \xi_1(u - \eta_1)} {\xi_2(u - \eta_2)} = \xi_1 \xi_2 \expectat {p_{\eta_2}} {(u - \eta_2)^2} = \xi_1 \xi_2 \eta_2 \ .
+\end{equation}
+We look for a $\widehat{\xi_2}$ such that
+\begin{equation}
+  \label{eq:7}
+  \xi_1\xi_2 \eta_2 = \scalarat {p_{\eta_1}} {\xi_1(u - \eta_1)}{\widehat{\xi_2}(u - \eta_1)} = \xi_1 \widehat{\xi_2} \eta_1 \ ,
+\end{equation}
+namely, $\widehat{\xi_2} = \frac {\eta_2}{\eta_1} \xi_2$. In conclusion, the mixture transport is
+\begin{equation}
+  \label{eq:18}
+  \mtransport {p_{\eta_2}}{p_{\eta_1}} \colon \xi_2(u - \eta_2) \mapsto \frac {\eta_2}{\eta_1} \xi_2 (u - \eta_1) \ .
+\end{equation}
+
+The curve $t \mapsto r(t) = p_{\eta(t)}$ is a mixure geodesic with initial velocity $\xi (u - \eta)$ at $\eta(0) = \eta$ if the velocity is constant up to the mixture transport,
+\begin{equation}
+  \label{eq:19}
+  \derivby t \log p_{\eta(t)} = \left(\frac 1 {\eta(t)} u - 1\right) \dot \eta(t) = \frac {u - \eta(t)} {\eta(t)} \dot \eta(t)=  \frac \eta {\eta(t)}\xi (u - \eta(t)) \ ,  
+\end{equation}
+
 % \bibliographystyle{amsplain}
 \bibliographystyle{plainnat}
 \bibliography{tutto}
