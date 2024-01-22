@@ -10,7 +10,7 @@
 \usepackage{mathtools}
 \usepackage{natbib}
 
-\title{Seminar}
+\title{Seminar 1}
 \author{Giovanni Pistone}
 \date{\today}
 
@@ -20,7 +20,7 @@
 
 \section{Introduction}
 
-In \citet*{raus|elshiaty|petra:arXiv2401.05196}, the authors suggest using the exponential geometry of exponential families but expressing it in the mixture coordinates. See the classical monograph \citet*{brown:86} for exponential families. About infinite dimensional exponential families, see \citet*{pistone:2013gsi}. The present discusses the same idea and its applications in the language on statistical bundles according to \citet*{chirco|pistone:2022}.
+In \citet*{raus|elshiaty|petra:arXiv2401.05196}, the authors suggest using the exponential geometry of exponential families but expressing it in the mixture coordinates. See the classical monograph \citet*{brown:86} for exponential families. About infinite dimensional exponential families, see \citet*{pistone:2013gsi}. Here, we rephrase the same ideas and applications in the language on statistical bundles according to \citet*{chirco|pistone:2022}.
 
 \section{Examples}
 \label{sec:examples}
@@ -131,7 +131,7 @@ It follows $\log \eta(t) = \log \eta + t \xi$, so that
 The initial conditions are satisfied. Notice that $\theta(t) = \log \eta(t) = \log \eta + t \xi$, that is, $t \mapsto \theta(t)$ is an affine function of $t$.
 
 \subsubsection{Dual parallel transport}
-Let us compute the dual of the e-transport. For each $\xi_1(u - \eta_1) \in \expfibreat {p_{\eta_1}} V$ and $\xi_2(u - \eta_2) \in \expfibreat {p_{\eta_2}} V$,
+Let us compute the dual $\mtransport {}{}$ of the e-transport $\etransport {}{}$. For each $\xi_1(u - \eta_1) \in \expfibreat {p_{\eta_1}} V$ and $\xi_2(u - \eta_2) \in \expfibreat {p_{\eta_2}} V$,
 \begin{equation}
   \label{eq:4}
   \scalarat {p_{\eta_2}} {\etransport {p_{\eta_1}}{p_{\eta_2}} \xi_1(u - \eta_1)} {\xi_2(u - \eta_2)} = \xi_1 \xi_2 \expectat {p_{\eta_2}} {(u - \eta_2)^2} =  \eta_2\,\xi_1 \xi_2 \ .
@@ -139,7 +139,7 @@ Let us compute the dual of the e-transport. For each $\xi_1(u - \eta_1) \in \exp
 We look for a $\widehat{\xi}_2$ such that
 \begin{equation}
   \label{eq:7}
-  \xi_1\xi_2 \eta_2 = \scalarat {p_{\eta_1}} {\xi_1(u - \eta_1)}{\widehat{\xi}_2(u - \eta_1)} = \xi_1 \widehat{\xi}_2 \eta_1 \ ,
+   \eta_2 \xi_1\xi_2 = \scalarat {p_{\eta_1}} {\xi_1(u - \eta_1)}{\widehat{\xi}_2(u - \eta_1)} = \eta_1 \xi_1 \widehat{\xi}_2 \ ,
 \end{equation}
 namely, $\widehat{\xi}_2 = \frac {\eta_2}{\eta_1} \xi_2$. In conclusion, the dual (or mixture) transport is
 \begin{equation}
@@ -154,7 +154,7 @@ The curve
 is the dual (mixture) geodesic with initial velocity $\xi (u - \eta)$ at $\eta(0) = \eta$ if the velocity is constant up to the mixture transport,
 \begin{equation}
   \label{eq:19}
-  \derivby t \log p_{\eta(t)} = \left(\frac 1 {\eta(t)} u - 1\right) \dot \eta(t) = \frac {u - \eta(t)} {\eta(t)} \dot \eta(t)=  \frac \eta {\eta(t)}\xi (u - \eta(t)) \ ,  
+  \derivby t \log p_{\eta(t)} = \frac {u - \eta(t)} {\eta(t)} \dot \eta(t)=  \frac \eta {\eta(t)}\xi (u - \eta(t)) \ ,  
 \end{equation}
 so that $\dot \eta(t) = \xi \eta$, hence $\eta(t) = \eta + (\xi \eta) t$. In conclusion, the mixture geodesic is
 \begin{equation}
@@ -162,19 +162,45 @@ so that $\dot \eta(t) = \xi \eta$, hence $\eta(t) = \eta + (\xi \eta) t$. In con
   \log r(t) = \log (\eta + \xi \eta t)u - (\eta + \xi \eta t) - \log u! \ .
 \end{equation}
 
-If the mixture geodesics connects $p_{\eta_1}$ at $t = 0$ to $p_{\eta_2}$ at $t = 1$, it holds
+If the mixture geodesics connects $p_{\eta_1}$ at $t = 0$ to $p_{\eta_2}$ at $t = 1$, then $\eta_2 = \eta_1 + \xi \eta_1 = \eta_1 (1 + \xi)$, hence
 \begin{equation}
-  \label{eq:24}
-  \log \eta_2 u - \eta _2 - \log u! =  \log (\eta_1 + \xi \eta_1)u - (\eta_1 + \xi \eta_1) - \log u!
-\end{equation}
-hence
-\begin{equation}
-  \label{eq:25}
-  \log \frac {\eta_2}{\eta_1(1+\xi)} = \eta_2 - \eta_1\xi \ . 
+    \xi = \frac {\eta_2}{\eta_1} - 1 \ .
 \end{equation}
 
+The geodesic connecting $p_{\eta_1}$ to $p_{\eta_2}$ is
+\begin{equation}
+  \label{eq:24}
+t \mapsto \log r(t) = \logof{\eta_1 + (\eta_2- \eta_1)t} u - \left(\eta_1 + (\eta_2-\eta_1) t \right) - u!
+\end{equation}
+and the velocity is
+\begin{equation}
+  \label{eq:25}
+t \mapsto \derivby t \log r(t) = \frac {\eta_2 - \eta_1}{\eta_1 + (\eta_2 - \eta_1)t} u - (\eta_2 - \eta_1) =
+\frac {\eta_2 - \eta_1}{(1-t) \eta_1 + t \eta_2} \left(u - ((1-t) \eta_1 + t \eta_2) \right) \ .
+\end{equation}
+
+Now, the initial velocity of the m-geodesic from $r(0) = p_{\eta_1}$ to $r(1) = p_{\eta_2}$ provides the m-displacement
+\begin{equation}
+    (p_{\eta_1}, p_{\eta_2}) \mapsto \frac {\eta_2 - \eta_1}{\eta_1} (u - \eta_1) \ .
+    \end{equation}
+
+Let us check the parallelogram law:
+\begin{multline}
+\frac {\eta_2 - \eta_1}{\eta_1} (u - \eta_1) + \mtransport {p_{\eta_2}}{p_{\eta_1}} \frac {\eta_3 - \eta_2}{\eta_2} (u - \eta_2) = \\
+\frac {\eta_2 - \eta_1}{\eta_1} (u - \eta_1) + \frac {\eta_3 - \eta_2}{\eta_2} \frac {\eta_2}{\eta_1} (u - \eta_1) =
+\frac {\eta_3 - \eta_1}{\eta_1} (u - \eta_1) \ .\end{multline}
 \subsection{Multivariate Poisson}
 \label{sec:multivariate-poisson}
+
+consider the product of $n$ Poisson PFs. The joint probability function is
+\begin{equation}
+    p(y;\eta) = \frac {y^\eta}{y!} \euler^{\eta} \ , \quad \text{with $y \in \posintegers^n$ and $\eta \in ]0,\infty[^n$,}
+\end{equation}
+with\begin{equation}
+    y_n = \prod_{j=1}^n y_j^{\eta_j}\ , \quad y! = \prod_{j=1}^n y_j! \ ,\quad \euler^{-\eta} = \expof{- \sum_{j=1}^n \eta_j} \ .
+\end{equation}
+
+Then, proceed as in the univariate case.
 
 \subsection{Multivariate binomial}
 \label{sec:mult-binom}
@@ -186,7 +212,7 @@ hence
 
 \end{document}
 
-%%% reftex-default-bibliography: ("./")
+%%% reflex-default-bibliography: ("./")
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
