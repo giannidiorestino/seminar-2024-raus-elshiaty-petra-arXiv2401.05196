@@ -202,8 +202,18 @@ with\begin{equation}
 
 Then, proceed as in the univariate case.
 
-\subsection{Multivariate binomial}
+\subsection{Multivariate Bernoulli}
 \label{sec:mult-binom}
+The $n$-variate Bernoulli PF is 
+\begin{equation}
+    p(y;\eta) = \prod_{j=1}^n y_j^{\eta_j}(1-y_j)^{1-\eta_j} \ , \quad \text{with $y \in \set{0,1}^n$ and $\eta \in ]0,1[^n$.}
+\end{equation}
+
+It is convenient to write
+\begin{equation}
+    p(y;\eta) = \prod_{j=1}^n \left(\frac{y_j}{1-y_j}\right) \frac{y_j}{1-y_j}} \prod_{j=1}^n (1 - y_j)
+    \end{equation}
+
 
 
 % \bibliographystyle{amsplain}
