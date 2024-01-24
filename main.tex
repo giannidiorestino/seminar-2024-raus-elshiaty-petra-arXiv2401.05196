@@ -259,7 +259,7 @@ Let us check the parallelogram law:
   \label{eq:31}
   S_{p_\eta}(p_{\bar\eta}) + \etransport {p_{\bar\eta}}{p_\eta} S_{p_{\bar\eta}}(p_{\bar{\bar\eta}}) = \\ 
   \sum_{j=1}^n \log \frac {\bar \eta^j(1 - \eta^j)}{\eta^j (1- \bar \eta^j)} (u^j - \eta^j) + \sum_{j=1}^n \log \frac {\bar {\bar\eta}^j(1 - \bar \eta^j)}{\bar \eta^j (1- \bar{\bar \eta}^j)} (u^j - \eta^j) = \\
-  \sum_{j=1}^n \log \frac {\bar{\bar\eta^j}(1 - \eta^j)}{\eta^j (1- \bar{\bar\eta^j})} (u^j - \eta^j) 
+  \sum_{j=1}^n \log \frac {\bar{\bar\eta^j}(1 - \eta^j)}{\eta^j (1- \bar{\bar\eta}^j)} (u^j - \eta^j) 
 \end{multline}
 
 The velocity of $t \mapsto p_{\eta(t)}$ is
@@ -270,7 +270,42 @@ The velocity of $t \mapsto p_{\eta(t)}$ is
     \sum_{j=1}^n \frac{\dot \eta^j(t)}{\eta^j(t)(1 - \eta^j(t))} (u^j - \eta^j(t)) \ .
 \end{multline}
 
+The curve $t \mapsto q(t) = p_{\eta(t)}$ is an exponential geodesic with initial velocity $\sum_{j=1}^n \xi_j (u^j - \eta^j)$ at $\eta(0) = \eta$ if the velocity is constant up to the exponential transport,
+\begin{equation}
+  \label{eq:15}
+  \derivby t \log p_{\eta(t)} =  \sum_{j=1}^n \frac{\dot \eta^j(t)}{\eta^j(t)(1 - \eta^j(t))} (u^j - \eta^j(t)) = \sum_{j=1}^n \xi_j (u^j - \eta^j(t)) \ ,  
+\end{equation}
+that is, for all $j = 1,\dots,n$,
+\begin{equation}
+  \label{eq:16}
+  \frac {\dot \eta^j(t)} {\eta^j(t)(1-\eta^j(t))} = \xi_j \ , \quad  \eta(0) = \eta \ ,
+\end{equation}
+hence,
+\begin{equation}
+  \label{eq:33}
+\eta^j(t) = \frac{\eta\euler^{-\xi_jt}} {(1-\eta) - \eta\euler^{-\xi_jt}} \ , \quad j=1,\dots, n \ ,  
+\end{equation}
+\begin{equation}
+  \label{eq:34}
+  1 - \eta^j(t) = \frac{1 - \eta} {(1-\eta) - \eta\euler^{-\xi_jt}} \ , \quad j=1,\dots, n \ ,  
+\end{equation}
+and
+\begin{equation}
+  \label{eq:35}
+  \frac{\eta^j(t)}{1-\eta^j(t)} = \frac{\eta}{1-\eta}\euler^{-\xi_j t} \ .
+\end{equation}
 
+The geodesic is
+\begin{equation}
+  \label{eq:36}
+  \log q(t) = \sum_{j=1}^n (\xi_j t) u^j - \sum_{j=1}^n \logof{(1-\eta)+\eta \euler^{-\xi_j t}} \ .
+\end{equation}
+In fact,
+\begin{equation}
+  \label{eq:37}
+  \velocity q(t) = \derivby t \log q(t) = \sum_{j=1}^n \xi_j u^i - \frac{\eta \euler^{-\xi_j t} \xi_j}{(1-\eta)+\eta \euler^{-\xi_j t}} = \sum_{j=1}^n \xi_j (u^i - \eta^j(t)) \ .
+\end{equation}
+END
 
 
 % \bibliographystyle{amsplain}
