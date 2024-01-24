@@ -204,55 +204,71 @@ Then, proceed as in the univariate case.
 
 \subsection{Multivariate Bernoulli}
 \label{sec:mult-binom}
+
 The $n$-variate Bernoulli PF is 
 \begin{equation}
-    p(y;\eta) = \prod_{j=1}^n \eta_j^{y_j}(1-\eta_j)^{1-y_j} \ , \quad \text{with $y \in \set{0,1}^n$ and $\eta \in ]0,1[^n$.}
+    p(y;\eta) = \prod_{j=1}^n (\eta^j)^{y^j}(1-\eta^j)^{1-y^j} \ , 
 \end{equation}
+with $y = (y^1,\dots,y^n) \in \set{0,1}^n$ and $\eta = (\eta^1,\dots,\eta^n) \in ]0,1[^n$.
 
 It is convenient to write
 \begin{equation}
-    p(y;\eta) = \prod_{j=1}^n \left(\frac{\eta_j}{1-\eta_j}\right)^{y_j} (1 - \eta_j) = \expof{\sum_{j=1}^n \log \frac{\eta_j}{1-\eta_j} y_j - \sum_{j=1}^n \log \frac 1 {1 - \eta_j}} \ .
+    p(y;\eta) = \prod_{j=1}^n \left(\frac{\eta^j}{1-\eta^j}\right)^{y^j} (1 - \eta^j) = \expof{\sum_{j=1}^n \log \frac{\eta^j}{1-\eta^j} y^j - \sum_{j=1}^n \log \frac 1 {1 - \eta^j}} \ .
   \end{equation}
 
-  It is an exponential family with sufficient statistics $u \colon \set{0,1} \ni y \mapsto y \in \reals^n$ and canonical parameters $\theta_j = \log \frac{\eta_j}{1-\eta_j}$. The inverse transformation is $\eta_j = \euler^{\theta_j}/(1+\euler^{\theta_j})$ and the cumulant function is $\psi(\theta) = \sum_{j=1}^n \log \left(1 + \euler^{\theta_j}\right)$:
+  It is an exponential family with sufficient statistics $u \colon \set{0,1}^n \ni y \mapsto y \in \reals^n$ and canonical parameters $\theta_j = \log \frac{\eta^j}{1-\eta^j}$. The inverse transformation is $\eta^j = \euler^{\theta_j}/(1+\euler^{\theta_j})$ and the cumulant function is $\psi(\theta) = \sum_{j=1}^n \log \left(1 + \euler^{\theta_j}\right)$:
       \begin{equation}
         \label{eq:21}
-        p_{\eta(\theta)} = \expof {\sum_{j=1}^n \theta_j u - \sum_{j=1}^n \log \left(1 + \euler^{\theta_j}\right)} \ .
+        p_{\eta(\theta)} = \expof {\sum_{j=1}^n \theta_j u^j - \sum_{j=1}^n \log \left(1 + \euler^{\theta_j}\right)} \ .
       \end{equation}
 
-      The partial derivative of the cumulant function is
+ The partial derivative of the cumulant function is
       \begin{equation}
         \label{eq:26}
-        \pderivby {\theta_j} \sum_{j=1}^n \log \left(1 + \euler^{\theta_j}\right) = \frac{\euler^{\theta_j}}{1 + \euler^{\theta_j}} = \eta_j(\theta) \ , \end{equation}
-      so that the parameter $\eta$ is the expectation parameter.
+        \pderivby {\theta_j} \sum_{j=1}^n \log \left(1 + \euler^{\theta_j}\right) = \frac{\euler^{\theta_j}}{1 + \euler^{\theta_j}} = \eta^j(\theta) \ , \end{equation}
+      so that the parameter $\eta$ is the expectation parameter, $\eta^j = \expectat {p_\eta} {u^j}$.
 
 If we define
 \begin{equation}
   \label{eq:27}
-  V = \spanof{u_1,\dots,u_n,1} = \setof{\sum_{j=1}n \xi_j u_j + \xi_0}{\xi_0,\xi_1, \dots,xi_n \in \reals}
+  V = \spanof{u^1,\dots,u^n,1} = \setof{\sum_{j=1}^n \xi_j u^j + \xi_0}{\xi_0,\xi_1, \dots,xi_n \in \reals} \ ,
 \end{equation}
-then the exponential family is $\maxexpat V$. The fibre at $p_\eta$ of the statistical bundle is
+then the exponential family is determined by the affine space $V$, $\maxexpat V$. The fibre at $p_\eta$ of the statistical bundle is
 \begin{equation}
   \label{eq:28}
-  \expfibreat {p_\eta} V = \setof{\sum_{j=1}^n \xi_j(u - \eta_j)}{\xi_1,\dots,\xi_n \in \reals} \ .
+  \expfibreat {p_\eta} V = \setof{\sum_{j=1}^n \xi_j(u^j - \eta^j)}{\xi_1,\dots,\xi_n \in \reals} \ .
 \end{equation}
 
 The covariance inner product on the fibre at $p_\eta$ is
 \begin{equation}
   \label{eq:29}
-(\xi, \bar \xi) \mapsto  \covat {p_\eta} {\sum_{j=1}^n \xi_j (u - \eta_j)}{\sum_{j=1}^n \bar \xi_j(u-\eta_j)} = \sum_{j=1}^n \eta_j(1-\eta_j) \xi_j \bar \xi_j \ .
+(\xi, \bar \xi) \mapsto  \covat {p_\eta} {\sum_{j=1}^n \xi_j (u^j - \eta^j)}{\sum_{j=1}^n \bar \xi_j(u^j-\eta^j)} = \sum_{j=1}^n \eta^j(1-\eta^j) \xi_j \bar \xi_j \ .
 \end{equation}
 
-The exponential displacement in the expectation parameters is
+The exponential displacement is
 \begin{multline}
   \label{eq:30}
   (\theta,\bar \theta) \mapsto (\eta,\bar \eta) \mapsto
   S_{p_\eta}(p_{\bar\eta}) = \log \frac {p_{\bar\eta}}{p_{\eta}} - \expectat {p_\eta} {\log \frac {p_{\bar\eta}}{p_{\eta}}} = \\
-  \sum_{j=1}^n (\bar \theta_j - \theta_j) u - \sum_{j=1}^n \log \frac {1 + \euler^{\bar\theta_j}}{1 + \euler^{\theta_j}} - \expectat {p_\eta}{ \sum_{j=1}^n (\bar \theta_j - \theta_j) u - \sum_{j=1}^n \log \frac {1 + \euler^{\bar\theta_j}}{1 + \euler^{\theta_j}}} = \\
-  \sum_{j=1}^n (\bar \theta_j - \theta_j)(u - \eta_j) = \sum_{j=1}^n \log \frac {\bar \eta_j(1 - \eta_j)}{\eta_j (1- \bar \eta_j)} (u_j - \eta_j) .
+  \sum_{j=1}^n (\bar \theta_j - \theta_j) u^j - \sum_{j=1}^n \log \frac {1 + \euler^{\bar\theta_j}}{1 + \euler^{\theta_j}} - \expectat {p_\eta}{ \sum_{j=1}^n (\bar \theta_j - \theta_j) u^j - \sum_{j=1}^n \log \frac {1 + \euler^{\bar\theta_j}}{1 + \euler^{\theta_j}}} = \\
+  \sum_{j=1}^n (\bar \theta_j - \theta_j)(u^j - \eta^j) = \sum_{j=1}^n \log \frac {\bar \eta^j(1 - \eta^j)}{\eta^j (1- \bar \eta^j)} (u^j - \eta^j) .
 \end{multline}
 
 Let us check the parallelogram law:
+\begin{multline}
+  \label{eq:31}
+  S_{p_\eta}(p_{\bar\eta}) + \etransport {p_{\bar\eta}}{p_\eta} S_{p_{\bar\eta}}(p_{\bar{\bar\eta}}) = \\ 
+  \sum_{j=1}^n \log \frac {\bar \eta^j(1 - \eta^j)}{\eta^j (1- \bar \eta^j)} (u^j - \eta^j) + \sum_{j=1}^n \log \frac {\bar {\bar\eta}^j(1 - \bar \eta^j)}{\bar \eta^j (1- \bar{\bar \eta}^j)} (u^j - \eta^j) = \\
+  \sum_{j=1}^n \log \frac {\bar{\bar\eta^j}(1 - \eta^j)}{\eta^j (1- \bar{\bar\eta^j})} (u^j - \eta^j) 
+\end{multline}
+
+The velocity of $t \mapsto p_{\eta(t)}$ is
+\begin{multline}
+  \label{eq:32}
+  \derivby t \sum_{j=1}^n \left(\log \frac{\eta^j(t)}{1-\eta^j(t)} u^j - \sum_{j=1}^n \log \frac 1 {1 - \eta^j(t)}\right) = \\
+  \sum_{j=1}^n \dot \eta^j(t) \left(\frac 1 {\eta^j(t)(1 - \eta^j(t))}u^j - \frac 1 {1 - \eta^j(t)}\right) = \\
+    \sum_{j=1}^n \frac{\dot \eta^j(t)}{\eta^j(t)(1 - \eta^j(t))} (u^j - \eta^j(t)) \ .
+\end{multline}
 
 
 
