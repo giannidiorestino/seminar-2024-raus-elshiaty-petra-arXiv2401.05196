@@ -322,7 +322,7 @@ so that, from \cref{eq:29},
 If $\mtransport {p_{\eta_2}} {p_{\eta_1}} = \left(\etransport {p_{\eta_1}} {p_{\eta_2}}\right)^T$,
 \begin{multline}
   \label{eq:39a}
-  \scalarat {p_{\eta_1}} {\sum_{j=1}^n \xi_j^1(u^j - \eta^j_1)} {\mtransport {p_{\eta_2}} {p_{\eta_1}}sum_{j=1}^n \xi_j^2(u^j - \eta^j_2)} = \\
+  \scalarat {p_{\eta_1}} {\sum_{j=1}^n \xi_j^1(u^j - \eta^j_1)} {\mtransport {p_{\eta_2}} {p_{\eta_1}}\sum_{j=1}^n \xi_j^2(u^j - \eta^j_2)} = \\
    \scalarat {p_{\eta_1}} {\sum_{j=1}^n \xi_j^1(u^j - \eta^j_1)} {\sum_{j=1}^n \hat \xi_j^2(u^j - \eta^j_1)} = 
    \sum_{j=1}^n \eta^j_1(1-\eta^j_1) \xi_j^1 \hat \xi_j^2 \ . 
 \end{multline}
@@ -334,10 +334,10 @@ so that the dual transport is
 \begin{equation}
   \label{eq:39b}
 \mtransport {p_{\eta_2}} {p_{\eta_1}} \sum_{j=1}^n \xi_j^2(u^j - \eta^j_2) = 
-\sum_{j=1}^n \frac{\eta^j_2(1-\eta^j_2)} {\eta^j_1(1-\eta^j_1)} \xi_j^2 (u^j - \eta^j_2) \ .
+\sum_{j=1}^n \frac{\eta^j_2(1-\eta^j_2)} {\eta^j_1(1-\eta^j_1)} \xi_j^2 (u^j - \eta^j_1) \ .
 \end{equation}
 
-The curve $t mapsto r(t) = p_{\eta(t)}$ is an m-geodesic if the velocity is constant up to m-translations. Assume the initial conditions $\eta(0) = \eta$ and $\velocity r(0) = \sum_{j=1}^n \xi(u^j - \eta^j)$. From \cref{eq:32} and \cref{eq:39b}
+The curve $t \mapsto r(t) = p_{\eta(t)}$ is an m-geodesic if the velocity is constant up to m-translations. Assume the initial conditions $\eta(0) = \eta$ and $\velocity r(0) = \sum_{j=1}^n \xi_j(u^j - \eta^j)$. From \cref{eq:32} and \cref{eq:39b}
 \begin{gather}
   \label{eq:40}
   \velocity r(t) =  \sum_{j=1}^n \frac{\dot \eta^j(t)}{\eta^j(t)(1 - \eta^j(t))} (u^j - \eta^j(t)) \\
@@ -350,12 +350,33 @@ The equation for the expectation parameter is
   \dot \eta^j(t) = \eta^j(1-\eta^j) \xi_j \ , \quad \eta^j(0) = \eta \ , \quad j = 1,\dots,n \ .
 \end{equation}
 
-The solution is $\eta^j(t) = \eta^j + \eta^j(1-\eta^j) \xi t$ and the geodesic is
+The solution is affine with
+\begin{gather}
+  \label{eq:44}
+  \eta^j(t) = \eta^j + \eta^j(1-\eta^j) \xi_j t = \eta^j\left (1 + (1-\eta^j) \xi_j t\right) \ ,\\
+  1 - \eta^j(t) = (1 - \eta^j) - \eta^j(1-\eta^j) \xi t = (1 - \eta^j)(1 -\eta^j\xi_j t) \ , \\
+  \frac{\eta^j(t}{1-\eta^j(t)} = \frac{\eta^j}{1-\eta^j} \frac{1 + (1-\eta^j) \xi_j t}{1 -\eta^j\xi_j t} \ .
+\end{gather}
+
+The geodesic is
 \begin{gather}
   \label{eq:42}
-  r(t)
+  \log r(t) = \sum_{=1}^n \logof{\frac{\eta^j}{1-\eta^j} \frac{1 + (1-\eta^j) \xi_j t}{1 -\eta^j\xi_j t}} u^j - \log \frac1{(1 - \eta^j)(1 -\eta^j\xi_j t)} \ , \\
+  \velocity r(t) = \sum_{j=1}^n \frac{\dot \eta^j(t)}{\left(\eta^j\left (1 + (1-\eta^j) \xi_j t\right)\right)(1 - \eta^j)(1 -\eta^j\xi_j t)} (u^j - \eta^j\left (1 + (1-\eta^j) \xi_j t\right))
 \end{gather}
-END
+
+Notice that
+\begin{equation}
+  \label{eq:45}
+   \log r(t) = \log p_\eta + \sum_{=1}^n \log \frac{1 + (1-\eta^j) \xi_j t}{1 -\eta^j\xi_j t} u^j - \log \frac1{1 -\eta^j\xi_j t} \ . 
+ \end{equation}
+ The m-geodesic that connects $p_{\eta_1}$ to $p_{\eta_2}$ at $t=0$ and $t=1$, respectively, is such that
+ \begin{equation}
+   \label{eq:46}
+   \log p_{\eta_2} - \log p_{\eta_1} = \sum_{j=1}^n \log \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} u^j - \log \frac1{1 -\eta^j_1\xi_j} \in V \ .
+ \end{equation}
+
+ END
 
 
 % \bibliographystyle{amsplain}
