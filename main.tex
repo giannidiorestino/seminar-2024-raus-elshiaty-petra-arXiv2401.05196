@@ -305,6 +305,19 @@ In fact,
   \label{eq:37}
   \velocity q(t) = \derivby t \log q(t) = \sum_{j=1}^n \xi_j u^i - \frac{\eta \euler^{-\xi_j t} \xi_j}{(1-\eta)+\eta \euler^{-\xi_j t}} = \sum_{j=1}^n \xi_j (u^i - \eta^j(t)) \ .
 \end{equation}
+
+Let us compute the dual of the exponential transport. Let be given
+\begin{equation}
+  \label{eq:38}
+  \sum_{j=1}^n \xi_j^1(u^j - \eta^j_1) \in \expfibreat {p_{\eta_1}} V \quad \text{and} \quad \sum_{j=1}^n \xi_j^2(u^j - \eta^j_2) \in \expfibreat {p_{\eta_2}} V \ ,
+\end{equation}
+so that, from \cref{eq:29},
+\begin{multline}
+  \label{eq:39}
+  \scalarat {p_{\eta_2}} {\etransport {p_{\eta_1}} {p_{\eta_2}}  \sum_{j=1}^n \xi_j^1(u^j - \eta^j_1)} {\sum_{j=1}^n \xi_j^2(u^j - \eta^j_2)} = \\
+   \scalarat {p_{\eta_2}} {\sum_{j=1}^n \xi_j^1(u^j - \eta^j_2)} {\sum_{j=1}^n \xi_j^2(u^j - \eta^j_2)} = \\
+   \sum_{j=1}^n \eta^j_2(1-\eta^j_2) \xi_j^1 \xi_j^2 \ . 
+ \end{multline}
 END
 
 
