@@ -332,12 +332,29 @@ From the equality of \cref{eq:29} and \cref{eq:30},
 \end{equation}
 so that the dual transport is
 \begin{equation}
+  \label{eq:39b}
 \mtransport {p_{\eta_2}} {p_{\eta_1}} \sum_{j=1}^n \xi_j^2(u^j - \eta^j_2) = 
 \sum_{j=1}^n \frac{\eta^j_2(1-\eta^j_2)} {\eta^j_1(1-\eta^j_1)} \xi_j^2 (u^j - \eta^j_2) \ .
 \end{equation}
 
+The curve $t mapsto r(t) = p_{\eta(t)}$ is an m-geodesic if the velocity is constant up to m-translations. Assume the initial conditions $\eta(0) = \eta$ and $\velocity r(0) = \sum_{j=1}^n \xi(u^j - \eta^j)$. From \cref{eq:32} and \cref{eq:39b}
+\begin{gather}
+  \label{eq:40}
+  \velocity r(t) =  \sum_{j=1}^n \frac{\dot \eta^j(t)}{\eta^j(t)(1 - \eta^j(t))} (u^j - \eta^j(t)) \\
+\mtransport {p_{\eta(0)}} {p_{\eta(t)}} \velocity r(0) =  \sum_{j=1}^n \frac{\eta^j(1-\eta^j)} {\eta^j(t)(1-\eta^j(t))} \xi_j (u^j - \eta^j(t)) \ .
+\end{gather}
 
+The equation for the expectation parameter is
+\begin{equation}
+  \label{eq:41}
+  \dot \eta^j(t) = \eta^j(1-\eta^j) \xi_j \ , \quad \eta^j(0) = \eta \ , \quad j = 1,\dots,n \ .
+\end{equation}
 
+The solution is $\eta^j(t) = \eta^j + \eta^j(1-\eta^j) \xi t$ and the geodesic is
+\begin{gather}
+  \label{eq:42}
+  r(t)
+\end{gather}
 END
 
 
