@@ -380,9 +380,26 @@ Notice that
  For all $j = 1,\dots,n$, multiply both terms of the equation above by $(u^j - \eta_1^j)$ and take the $p_{\eta_1}$-expectation,
  \begin{equation}
    \label{eq:43}
-   \expectat {p_{\eta_1}} {(u^j-\eta^j_1)(\log p_{\eta_2} - \log p_{\eta_1})} = \log \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} \expectat {p_{\eta_1}}{(u^j - \eta^j)^2}
+   \expectat {p_{\eta_1}} {(u^j-\eta^j_1)(\log p_{\eta_2} - \log p_{\eta_1})} = \log \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} \expectat {p_{\eta_1}}{(u^j - \eta^j)^2} \ .
  \end{equation}
  
+ From \cref{eq:30},
+ \begin{equation}
+   \label{eq:47}
+   \log \frac {\eta^j_2(1 - \eta^j_1)}{\eta^j_1 (1- \eta^j_2)} \expectat {p_{\eta_1}} {(u^j - \eta^j)^2} = \log \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} \expectat {p_{\eta_1}}{(u^j - \eta^j)^2}
+ \end{equation}
+
+ \includegraphics[width=\textwidth]{scans/scan-1.pdf}
+
+ Let us check the parallelogram law. From \cref{eq:39a},
+ \begin{multline}
+   \label{eq:48}
+   \sum_{j=1}^n \frac{\eta^j_2-\eta_1^j}{\eta_1^j(1-\eta_1j)}(u^j-\eta_1^j) + \mtransport {p_{\eta_2}}{p_{\eta_1}} \sum_{j=1}^n \frac{\eta^j_3-\eta_2^j}{\eta_2^j(1-\eta_2^y)}(u^j-\eta_2^j) = \\
+   \sum_{j=1}^n \frac{\eta^j_2-\eta_1^j}{\eta_1^j(1-\eta_1^j)}(u^j-\eta_1^j) + \sum_{j=1}^n  \frac{\eta^j_2(1-\eta^j_2)} {\eta^j_1(1-\eta^j_1)} \frac{\eta^j_3-\eta_2^j}{\eta_2^j(1-\eta_2^j)}(u^j-\eta_1^j) = \\
+   \sum_{j=1}^n \frac{\eta^j_3-\eta_1^j}{\eta_1^j(1-\eta_1^j)}(u^j-\eta_1^j) 
+ \end{multline}
+
+
  END
 
 
