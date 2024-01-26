@@ -371,11 +371,18 @@ Notice that
    \log r(t) = \log p_\eta + \sum_{=1}^n \log \frac{1 + (1-\eta^j) \xi_j t}{1 -\eta^j\xi_j t} u^j - \log \frac1{1 -\eta^j\xi_j t} \ . 
  \end{equation}
  The m-geodesic that connects $p_{\eta_1}$ to $p_{\eta_2}$ at $t=0$ and $t=1$, respectively, is such that
- \begin{equation}
+ \begin{multline}
    \label{eq:46}
-   \log p_{\eta_2} - \log p_{\eta_1} = \sum_{j=1}^n \log \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} u^j - \log \frac1{1 -\eta^j_1\xi_j} \in V \ .
- \end{equation}
+   \log p_{\eta_2} - \log p_{\eta_1} = \sum_{j=1}^n \log \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} u^j - \log \frac1{1 -\eta^j_1\xi_j} =  \\
+ \log p_{\eta_2} - \log p_{\eta_1} = \sum_{j=1}^n \log \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} (u^j - \eta^j)- \logof{1 + (1-\eta^j_1) \xi_j}  \ .
+ \end{multline}
 
+ For all $j = 1,\dots,n$, multiply both terms of the equation above by $(u^j - \eta_1^j)$ and take the $p_{\eta_1}$-expectation,
+ \begin{equation}
+   \label{eq:43}
+   \expectat {p_{\eta_1}} {(u^j-\eta^j_1)(\log p_{\eta_2} - \log p_{\eta_1})} = \log \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} \expectat {p_{\eta_1}}{(u^j - \eta^j)^2}
+ \end{equation}
+ 
  END
 
 
