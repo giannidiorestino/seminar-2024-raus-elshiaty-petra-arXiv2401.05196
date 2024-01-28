@@ -205,7 +205,7 @@ Then, proceed as in the univariate case.
 \subsection{Multivariate Bernoulli}
 \label{sec:mult-binom}
 
-The $n$-variate Bernoulli PF is 
+The $n$-variate independent Bernoulli PF is 
 \begin{equation}
     p(y;\eta) = \prod_{j=1}^n (\eta^j)^{y^j}(1-\eta^j)^{1-y^j} \ , 
 \end{equation}
@@ -239,30 +239,36 @@ then the exponential family is determined by the affine space $V$, $\maxexpat V$
   \expfibreat {p_\eta} V = \setof{\sum_{j=1}^n \xi_j(u^j - \eta^j)}{\xi_1,\dots,\xi_n \in \reals} \ .
 \end{equation}
 
+The exponential transport maps the fibre at $p_{\eta_1}$ to the fibre at $p_{\eta_2}$ by
+\begin{equation}
+  \label{eq:49}
+  \etransport {p_{\eta_1}}{p_{\eta_2}} \sum_{j=1}^n \xi_j(u^j - \eta^j_1) = \sum_{j=1}^n \xi_j(u^j - \eta^j_2) \ .
+\end{equation}
+
 The covariance inner product on the fibre at $p_\eta$ is
 \begin{equation}
   \label{eq:29}
-(\xi, \bar \xi) \mapsto  \covat {p_\eta} {\sum_{j=1}^n \xi_j (u^j - \eta^j)}{\sum_{j=1}^n \bar \xi_j(u^j-\eta^j)} = \sum_{j=1}^n \eta^j(1-\eta^j) \xi_j \bar \xi_j \ .
+(\xi^1,\xi^2) \mapsto  \covat {p_\eta} {\sum_{j=1}^n \xi_j^1 (u^j - \eta^j)}{\sum_{j=1}^n  \xi_j^2(u^j-\eta^j)} = \sum_{j=1}^n \eta^j(1-\eta^j) \xi_j^1 \xi_j^2 \ .
 \end{equation}
 
 The exponential displacement is
 \begin{multline}
   \label{eq:30}
-  (\theta,\bar \theta) \mapsto (\eta,\bar \eta) \mapsto
-  S_{p_\eta}(p_{\bar\eta}) = \log \frac {p_{\bar\eta}}{p_{\eta}} - \expectat {p_\eta} {\log \frac {p_{\bar\eta}}{p_{\eta}}} = \\
-  \sum_{j=1}^n (\bar \theta_j - \theta_j) u^j - \sum_{j=1}^n \log \frac {1 + \euler^{\bar\theta_j}}{1 + \euler^{\theta_j}} - \expectat {p_\eta}{ \sum_{j=1}^n (\bar \theta_j - \theta_j) u^j - \sum_{j=1}^n \log \frac {1 + \euler^{\bar\theta_j}}{1 + \euler^{\theta_j}}} = \\
-  \sum_{j=1}^n (\bar \theta_j - \theta_j)(u^j - \eta^j) = \sum_{j=1}^n \log \frac {\bar \eta^j(1 - \eta^j)}{\eta^j (1- \bar \eta^j)} (u^j - \eta^j) .
+  (\theta^1,\theta^2) \mapsto (\eta_1,\eta_2) \mapsto
+  S_{p_{\eta_1}}(p_{\eta_2}) = \log \frac {p_{\eta_2}}{p_{\eta_1}} - \expectat {p_{\eta_1}} {\log \frac {p_{\eta_2}}{p_{\eta_1}}} = \\
+  \sum_{j=1}^n (\theta^2_j - \theta_j^1) u^j - \sum_{j=1}^n \log \frac {1 + \euler^{\theta_j^2}}{1 + \euler^{\theta_j^1}} - \expectat {p_{\eta_1}}{ \sum_{j=1}^n (\theta_j^2 - \theta_j^1) u^j - \sum_{j=1}^n \log \frac {1 + \euler^{\theta_j^2}}{1 + \euler^{\theta_j^1}}} = \\
+  \sum_{j=1}^n (\theta_j^2 - \theta_j^1)(u^j - \eta^j_1) = \sum_{j=1}^n \log \frac {\eta^j_1(1 - \eta^j_1)}{\eta^j_1 (1-\eta^j_2)} (u^j - \eta^j_1) .
 \end{multline}
 
 Let us check the parallelogram law:
 \begin{multline}
   \label{eq:31}
-  S_{p_\eta}(p_{\bar\eta}) + \etransport {p_{\bar\eta}}{p_\eta} S_{p_{\bar\eta}}(p_{\bar{\bar\eta}}) = \\ 
-  \sum_{j=1}^n \log \frac {\bar \eta^j(1 - \eta^j)}{\eta^j (1- \bar \eta^j)} (u^j - \eta^j) + \sum_{j=1}^n \log \frac {\bar {\bar\eta}^j(1 - \bar \eta^j)}{\bar \eta^j (1- \bar{\bar \eta}^j)} (u^j - \eta^j) = \\
-  \sum_{j=1}^n \log \frac {\bar{\bar\eta^j}(1 - \eta^j)}{\eta^j (1- \bar{\bar\eta}^j)} (u^j - \eta^j) 
+  S_{p_{\eta_1}}(p_{\eta_2}) + \etransport {p_{\eta_2}}{p_{\eta_1}} S_{p_{\eta_2}}(p_{\eta_3}) = \\ 
+  \sum_{j=1}^n \log \frac {\bar \eta^j_2(1 - \eta^j_1)}{\eta^j_1 (1- \eta^j_2)} (u^j - \eta^j_1) + \sum_{j=1}^n \log \frac {\eta_3^j(1 - \eta_2^j)}{\eta^j_2 (1- \eta_3^j)} (u^j - \eta^j_2) = \\
+  \sum_{j=1}^n \log \frac {\eta^j_3(1 - \eta^j_1)}{\eta^j_1 (1- \eta_3^j)} (u^j - \eta^j_1) \ .
 \end{multline}
 
-The velocity of $t \mapsto p_{\eta(t)}$ is
+The velocity of a curve expressed by the expectation parameter $t \mapsto p_{\eta(t)}$ is
 \begin{multline}
   \label{eq:32}
   \derivby t \sum_{j=1}^n \left(\log \frac{\eta^j(t)}{1-\eta^j(t)} u^j - \sum_{j=1}^n \log \frac 1 {1 - \eta^j(t)}\right) = \\
