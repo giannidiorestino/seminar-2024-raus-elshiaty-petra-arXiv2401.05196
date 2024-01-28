@@ -213,6 +213,7 @@ with $y = (y^1,\dots,y^n) \in \set{0,1}^n$ and $\eta = (\eta^1,\dots,\eta^n) \in
 
 It is convenient to write
 \begin{equation}
+  \label{eq:exponential-family}
     p(y;\eta) = \prod_{j=1}^n \left(\frac{\eta^j}{1-\eta^j}\right)^{y^j} (1 - \eta^j) = \expof{\sum_{j=1}^n \log \frac{\eta^j}{1-\eta^j} y^j - \sum_{j=1}^n \log \frac 1 {1 - \eta^j}} \ .
   \end{equation}
 
@@ -268,38 +269,40 @@ Let us check the parallelogram law:
   \sum_{j=1}^n \log \frac {\eta^j_3(1 - \eta^j_1)}{\eta^j_1 (1- \eta_3^j)} (u^j - \eta^j_1) \ .
 \end{multline}
 
-The velocity of a curve expressed by the expectation parameter $t \mapsto p_{\eta(t)}$ is
+\subsubsection{Exponential affine geodesic}
+\label{sec:expon-affine-geod}
+The velocity of a curve expressed by the expectation parameter $t \mapsto p_{\eta(t)}$ follows from \cref{eq:exponential-family},
 \begin{multline}
   \label{eq:32}
-  \derivby t \sum_{j=1}^n \left(\log \frac{\eta^j(t)}{1-\eta^j(t)} u^j - \sum_{j=1}^n \log \frac 1 {1 - \eta^j(t)}\right) = \\
+ \derivby t \log p_{\eta(t)} =  \derivby t \sum_{j=1}^n \left(\log \frac{\eta^j(t)}{1-\eta^j(t)} u^j - \sum_{j=1}^n \log \frac 1 {1 - \eta^j(t)}\right) = \\
   \sum_{j=1}^n \dot \eta^j(t) \left(\frac 1 {\eta^j(t)(1 - \eta^j(t))}u^j - \frac 1 {1 - \eta^j(t)}\right) = \\
-    \sum_{j=1}^n \frac{\dot \eta^j(t)}{\eta^j(t)(1 - \eta^j(t))} (u^j - \eta^j(t)) \ .
+    \sum_{j=1}^n \dot \eta^j(t) \frac{1}{\eta^j(t)(1 - \eta^j(t))} (u^j - \eta^j(t)) \ .
 \end{multline}
 
-The curve $t \mapsto q(t) = p_{\eta(t)}$ is an exponential geodesic with initial velocity $\sum_{j=1}^n \xi_j (u^j - \eta^j)$ at $\eta(0) = \eta$ if the velocity is constant up to the exponential transport,
+The curve $t \mapsto q(t) = p_{\eta(t)}$, $q(0) = p_{\eta}$, is an exponential geodesic with initial velocity
 \begin{equation}
-  \label{eq:15a}
-  \derivby t \log p_{\eta(t)} =  \sum_{j=1}^n \frac{\dot \eta^j(t)}{\eta^j(t)(1 - \eta^j(t))} (u^j - \eta^j(t)) = \sum_{j=1}^n \xi_j (u^j - \eta^j(t)) \ ,  
+  \label{eq:50}
+\left. \derivby t \log p_{\eta(t)} \right|_{t=0} = \sum_{j=1}^n \dot \eta^j(0) \frac{1}{\eta^j(1 - \eta^j)} (u^j - \eta^j) = \sum_{j=1}^n \xi_j (u^j - \eta^j)
 \end{equation}
+if the velocity is constant up to the exponential transport,
+\begin{multline}
+  \label{eq:15a}
+\velocity q(t) = \derivby t \log p_{\eta(t)} =  \sum_{j=1}^n \frac{\dot \eta^j(t)}{\eta^j(t)(1 - \eta^j(t))} (u^j - \eta^j(t)) = \\ \etransport {p_\eta} {p_{\eta(t)}} \sum_{j=1}^n \xi_j (u^j - \eta^j) = \sum_{j=1}^n \xi_j (u^j - \eta^j(t)) \ ,  
+\end{multline}
 that is, for all $j = 1,\dots,n$,
 \begin{equation}
   \label{eq:16a}
-  \frac {\dot \eta^j(t)} {\eta^j(t)(1-\eta^j(t))} = \xi_j \ , \quad  \eta(0) = \eta \ ,
+  \frac {\dot \eta^j(t)} {\eta^j(t)(1-\eta^j(t))} = \derivby t \log \frac {\eta^j(t)} {1-\eta^j(t)} = \xi_j \ , \quad  \eta(0) = \eta \ ,
 \end{equation}
-hence,
-\begin{equation}
+hence, for all $j=1,\dots, n$,
+\begin{gather}
   \label{eq:33}
-\eta^j(t) = \frac{\eta\euler^{-\xi_jt}} {(1-\eta) - \eta\euler^{-\xi_jt}} \ , \quad j=1,\dots, n \ ,  
-\end{equation}
-\begin{equation}
+\eta^j(t) = \frac{\eta\euler^{\xi_jt}} {(1-\eta) + \eta\euler^{\xi_jt}} \ , \\  
   \label{eq:34}
-  1 - \eta^j(t) = \frac{1 - \eta} {(1-\eta) - \eta\euler^{-\xi_jt}} \ , \quad j=1,\dots, n \ ,  
-\end{equation}
-and
-\begin{equation}
+  1 - \eta^j(t) = \frac{1 - \eta} {(1-\eta) + \eta\euler^{\xi_jt}} \ , \\
   \label{eq:35}
-  \frac{\eta^j(t)}{1-\eta^j(t)} = \frac{\eta}{1-\eta}\euler^{-\xi_j t} \ .
-\end{equation}
+  \frac{\eta^j(t)}{1-\eta^j(t)} = \frac{\eta}{1-\eta}\euler^{\xi_j t} \ .
+\end{gather}
 
 The geodesic is
 \begin{equation}
