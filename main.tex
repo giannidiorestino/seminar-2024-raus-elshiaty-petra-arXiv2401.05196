@@ -304,17 +304,20 @@ hence, for all $j=1,\dots, n$,
   \frac{\eta^j(t)}{1-\eta^j(t)} = \frac{\eta}{1-\eta}\euler^{\xi_j t} \ .
 \end{gather}
 
-The geodesic is
-\begin{equation}
+The geodesic is best presented as the $\log$ of the density with respect to the initial value,
+\begin{multline}
   \label{eq:36}
-  \log q(t) = \sum_{j=1}^n (\xi_j t) u^j - \sum_{j=1}^n \logof{(1-\eta)+\eta \euler^{-\xi_j t}} \ .
-\end{equation}
+  \log\frac{q(t)}{q(0)} = \\
+  \left(\sum_{j=1}^n \log \frac {\eta^j(t)}{1 - \eta^j(t)} u^j - \sum_{j=1}^n \log \frac 1 {1 - \eta^j(t)}\right) - \left(\sum_{j=1}^n \log \frac {\eta^j}{1-\eta^j} u^j- \sum_{j=1}^n \log \frac 1 {1 - \eta^j} \right) = \\ \sum_{j=1}^n \xi_j t u^j - \sum_{j=1}^n \logof{(1-\eta^j) + \eta^j\euler^{\xi_jt}}
+\end{multline}
 In fact,
 \begin{equation}
   \label{eq:37}
-  \velocity q(t) = \derivby t \log q(t) = \sum_{j=1}^n \xi_j u^i - \frac{\eta \euler^{-\xi_j t} \xi_j}{(1-\eta)+\eta \euler^{-\xi_j t}} = \sum_{j=1}^n \xi_j (u^i - \eta^j(t)) \ .
+  \velocity q(t) = \derivby t \log \frac{q(t)}{q(0)} = \sum_{j=1}^n \xi_j u^i - \frac{\eta \euler^{\xi_j t} \xi_j}{(1-\eta)+\eta \euler^{\xi_j t}} = \sum_{j=1}^n \xi_j (u^i - \eta^j(t)) \ .
 \end{equation}
 
+\subsubsection{Dual of the exponential transport and m-geodesic}
+\label{sec:dual-expon-transp}
 Let us compute the dual of the exponential transport. Let be given
 \begin{equation}
   \label{eq:38}
