@@ -324,7 +324,9 @@ Notice the connection between the exponential displacement and the velocity of t
 
 \subsubsection{Dual of the exponential transport and m-geodesic}
 \label{sec:dual-expon-transp}
-Let us compute the dual of the exponential transport. Let be given
+Let us compute the dual $\mtransport {p_{\eta_2}}{p_{\eta_1}} = \left(\etransport {p_{\eta_1}}{p_{\eta_2}}\right)^\dagger$ of the exponential transport. Other terms in use are expectation transport or mixture transport.
+
+Let be given
 \begin{equation}
   \label{eq:38}
   \sum_{j=1}^n \xi_j^1(u^j - \eta^j_1) \in \expfibreat {p_{\eta_1}} V \quad \text{and} \quad \sum_{j=1}^n \xi_j^2(u^j - \eta^j_2) \in \expfibreat {p_{\eta_2}} V \ ,
@@ -337,7 +339,7 @@ so that, from \cref{eq:29},
    \sum_{j=1}^n \eta^j_2(1-\eta^j_2) \xi_j^1 \xi_j^2 \ . 
  \end{multline}
 
-If $\mtransport {p_{\eta_2}} {p_{\eta_1}} = \left(\etransport {p_{\eta_1}} {p_{\eta_2}}\right)^T$,
+If $\mtransport {p_{\eta_2}} {p_{\eta_1}} = \left(\etransport {p_{\eta_1}} {p_{\eta_2}}\right)^\dagger$,
 \begin{multline}
   \label{eq:39a}
   \scalarat {p_{\eta_1}} {\sum_{j=1}^n \xi_j^1(u^j - \eta^j_1)} {\mtransport {p_{\eta_2}} {p_{\eta_1}}\sum_{j=1}^n \xi_j^2(u^j - \eta^j_2)} = \\
@@ -358,8 +360,9 @@ so that the dual transport is
 The curve $t \mapsto r(t) = p_{\eta(t)}$ is an m-geodesic if the velocity is constant up to m-translations. Assume the initial conditions $\eta(0) = \eta$ and $\velocity r(0) = \sum_{j=1}^n \xi_j(u^j - \eta^j)$. From \cref{eq:32} and \cref{eq:39b}
 \begin{gather}
   \label{eq:40}
-  \velocity r(t) =  \sum_{j=1}^n \frac{\dot \eta^j(t)}{\eta^j(t)(1 - \eta^j(t))} (u^j - \eta^j(t)) \\
-\mtransport {p_{\eta(0)}} {p_{\eta(t)}} \velocity r(0) =  \sum_{j=1}^n \frac{\eta^j(1-\eta^j)} {\eta^j(t)(1-\eta^j(t))} \xi_j (u^j - \eta^j(t)) \ .
+  \velocity r(t) =  \sum_{j=1}^n \frac{\dot \eta^j(t)}{\eta^j(t)(1 - \eta^j(t))} (u^j - \eta^j(t)) \ , \\
+  \velocity r(0) =  \sum_{j=1}^n \frac{\dot \eta^j(0)}{\eta^j(0)(1 - \eta^j(0))} (u^j - \eta^j(0)) = \sum_{j=1}^n \xi_j(u^j - \eta^j) \ , \\
+\mtransport {p_{\eta}} {p_{\eta(t)}} \velocity r(0) =  \sum_{j=1}^n \frac{\eta^j(1-\eta^j)} {\eta^j(t)(1-\eta^j(t))} \xi_j (u^j - \eta^j(t)) \ .
 \end{gather}
 
 The equation for the expectation parameter is
@@ -373,15 +376,20 @@ The solution is affine with
   \label{eq:44}
   \eta^j(t) = \eta^j + \eta^j(1-\eta^j) \xi_j t = \eta^j\left (1 + (1-\eta^j) \xi_j t\right) \ ,\\
   1 - \eta^j(t) = (1 - \eta^j) - \eta^j(1-\eta^j) \xi t = (1 - \eta^j)(1 -\eta^j\xi_j t) \ , \\
-  \frac{\eta^j(t}{1-\eta^j(t)} = \frac{\eta^j}{1-\eta^j} \frac{1 + (1-\eta^j) \xi_j t}{1 -\eta^j\xi_j t} \ .
+  \frac{\eta^j(t)}{1-\eta^j(t)} = \frac{\eta^j}{1-\eta^j} \frac{1 + (1-\eta^j) \xi_j t}{1 -\eta^j\xi_j t} = \frac{\eta^j}{1-\eta^j} \left(1 + \frac{1}{1 -\eta^j\xi_j t}\right) \ .
 \end{gather}
 
-The geodesic is
-\begin{gather}
+The geodesic is given by 
+\begin{equation}
   \label{eq:42}
-  \log r(t) = \sum_{=1}^n \logof{\frac{\eta^j}{1-\eta^j} \frac{1 + (1-\eta^j) \xi_j t}{1 -\eta^j\xi_j t}} u^j - \log \frac1{(1 - \eta^j)(1 -\eta^j\xi_j t)} \ , \\
-  \velocity r(t) = \sum_{j=1}^n \frac{\dot \eta^j(t)}{\left(\eta^j\left (1 + (1-\eta^j) \xi_j t\right)\right)(1 - \eta^j)(1 -\eta^j\xi_j t)} (u^j - \eta^j\left (1 + (1-\eta^j) \xi_j t\right))
-\end{gather}
+  \log \frac{r(t)}{r(0)} = \sum_{=1}^n \logof{\frac{1 + (1-\eta^j) \xi_j t}{1 -\eta^j\xi_j t}} u^j - \log \frac1{1 -\eta^j\xi_j t} \ ,
+\end{equation}
+\begin{multline}
+  \velocity r(t) = \derivby t \log \frac{r(t)}{r(0)} = \sum_{j=1}^n \left(\frac{(1 -\eta^j)\xi_j}{1 + (1-\eta^j) \xi_j t} + \frac{\eta^j\xi_j}{1 - \eta^j \xi_j t} \right) u^j - \sum_{j=1}^n \frac{\eta^j\xi_j}{1-\eta^j\xi_jt} = \\
+  \sum_{j=1}^n \frac{1}{(1 + (1-\eta^j) \xi_j t)(1 - \eta^j \xi_j t)} \xi_j u^j 
+- \sum_{j=1}^n \frac{\eta^j(1 + (1-\eta^j) \xi_j t)}{(1 + (1-\eta^j) \xi_j t)(1 - \eta^j \xi_j t)} \xi_j  = \\
+ \sum_{j=1}^n \frac{1}{(1 + (1-\eta^j) \xi_j t)(1 - \eta^j \xi_j t)} \xi_j (u^j - \eta^j(1 + (1-\eta^j) \xi_j t)) \ . \end{multline}
+
 
 Notice that
 \begin{equation}
