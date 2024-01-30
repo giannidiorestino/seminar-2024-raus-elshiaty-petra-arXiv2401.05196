@@ -385,37 +385,47 @@ The geodesic is given by
   \log \frac{r(t)}{r(0)} = \sum_{=1}^n \logof{\frac{1 + (1-\eta^j) \xi_j t}{1 -\eta^j\xi_j t}} u^j - \log \frac1{1 -\eta^j\xi_j t} \ ,
 \end{equation}
 \begin{multline}
-  \velocity r(t) = \derivby t \log \frac{r(t)}{r(0)} = \sum_{j=1}^n \left(\frac{(1 -\eta^j)\xi_j}{1 + (1-\eta^j) \xi_j t} + \frac{\eta^j\xi_j}{1 - \eta^j \xi_j t} \right) u^j - \sum_{j=1}^n \frac{\eta^j\xi_j}{1-\eta^j\xi_jt} = \\
+  \velocity r(t) = \derivby t \log \frac{r(t)}{r(0)} = \sum_{j=1}^n \left(\frac{(1 -\eta^j)\xi_j}{1 + (1-\eta^j) \xi_j t} - \frac{\eta^j\xi_j}{1 - \eta^j \xi_j t} \right) u^j - \sum_{j=1}^n \frac{\eta^j\xi_j}{1-\eta^j\xi_jt} = \\
   \sum_{j=1}^n \frac{1}{(1 + (1-\eta^j) \xi_j t)(1 - \eta^j \xi_j t)} \xi_j u^j 
 - \sum_{j=1}^n \frac{\eta^j(1 + (1-\eta^j) \xi_j t)}{(1 + (1-\eta^j) \xi_j t)(1 - \eta^j \xi_j t)} \xi_j  = \\
  \sum_{j=1}^n \frac{1}{(1 + (1-\eta^j) \xi_j t)(1 - \eta^j \xi_j t)} \xi_j (u^j - \eta^j(1 + (1-\eta^j) \xi_j t)) \ . \end{multline}
 
-
-Notice that
+We want to compute the dispacement associated to the m-geodesic. Notice that
 \begin{equation}
   \label{eq:45}
    \log r(t) = \log p_\eta + \sum_{=1}^n \log \frac{1 + (1-\eta^j) \xi_j t}{1 -\eta^j\xi_j t} u^j - \log \frac1{1 -\eta^j\xi_j t} \ . 
  \end{equation}
  The m-geodesic that connects $p_{\eta_1}$ to $p_{\eta_2}$ at $t=0$ and $t=1$, respectively, is such that
- \begin{multline}
+ \begin{equation}
    \label{eq:46}
-   \log p_{\eta_2} - \log p_{\eta_1} = \sum_{j=1}^n \log \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} u^j - \log \frac1{1 -\eta^j_1\xi_j} =  \\
- \log p_{\eta_2} - \log p_{\eta_1} = \sum_{j=1}^n \log \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} (u^j - \eta^j)- \logof{1 + (1-\eta^j_1) \xi_j}  \ .
- \end{multline}
-
+   \log p_{\eta_2} - \log p_{\eta_1} = \sum_{j=1}^n \log \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} u^j - \log \frac1{1 -\eta^j_1\xi_j} \ .
+ \end{equation}
+ 
  For all $j = 1,\dots,n$, multiply both terms of the equation above by $(u^j - \eta_1^j)$ and take the $p_{\eta_1}$-expectation,
  \begin{equation}
    \label{eq:43}
    \expectat {p_{\eta_1}} {(u^j-\eta^j_1)(\log p_{\eta_2} - \log p_{\eta_1})} = \log \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} \expectat {p_{\eta_1}}{(u^j - \eta^j)^2} \ .
  \end{equation}
  
- From \cref{eq:30},
- \begin{equation}
+ We compute the RHS from \cref{eq:30}, to get the equations
+ \begin{gather}
    \label{eq:47}
-   \log \frac {\eta^j_2(1 - \eta^j_1)}{\eta^j_1 (1- \eta^j_2)} \expectat {p_{\eta_1}} {(u^j - \eta^j)^2} = \log \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} \expectat {p_{\eta_1}}{(u^j - \eta^j)^2}
- \end{equation}
+   \log \frac {\eta^j_2(1 - \eta^j_1)}{\eta^j_1 (1- \eta^j_2)} \expectat {p_{\eta_1}} {(u^j - \eta^j)^2} = \log \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} \expectat {p_{\eta_1}}{(u^j - \eta^j)^2} \ , \\
+   \frac {\eta^j_2(1 - \eta^j_1)}{\eta^j_1 (1- \eta^j_2)} = \frac{1 + (1-\eta^j_1) \xi_j}{1 -\eta^j_1\xi_j} \ , \\
+ (1 -\eta^j_1\xi_j)(\eta^j_2(1 - \eta^j_1)) = (\eta^j_1 (1- \eta^j_2))(1 + (1-\eta^j_1) \xi_j) \ .
+ \end{gather}
+The solution is
+\begin{equation}
+  \label{eq:52}
+  \xi_j = \frac{\eta^j_2-\eta^j_1}{\eta^j_1(1-\eta^j_1)} \ , \quad j=1,\dots,n \ .
+\end{equation}
 
- \includegraphics[width=\textwidth]{scans/scan-1.pdf}
+The m-transport is
+\begin{equation}
+  \label{eq:53}
+  S^\dagger _{p_{\eta_1}}(p_{\eta_2}) = \sum_{j=1}^n \frac{\eta^j_2-\eta^j_1}{\eta^j_1(1-\eta^j_1)} (u^j - \eta^j_1) \ . 
+\end{equation}
+ %\includegraphics[width=\textwidth]{scans/scan-1.pdf}
 
  Let us check the parallelogram law. From \cref{eq:39a},
  \begin{multline}
