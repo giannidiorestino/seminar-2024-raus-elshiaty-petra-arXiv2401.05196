@@ -276,7 +276,7 @@ The velocity of a curve $t \mapsto p_{\eta(t)}$ expressed by the expectation par
   \label{eq:32}
  \derivby t \log p_{\eta(t)} =  \derivby t \sum_{j=1}^n \left(\log \frac{\eta^j(t)}{1-\eta^j(t)} u^j - \sum_{j=1}^n \log \frac 1 {1 - \eta^j(t)}\right) = \\
   \sum_{j=1}^n \dot \eta^j(t) \left(\frac 1 {\eta^j(t)(1 - \eta^j(t))}u^j - \frac 1 {1 - \eta^j(t)}\right) = \\
-    \sum_{j=1}^n \dot \eta^j(t) \frac{1}{\eta^j(t)(1 - \eta^j(t))} (u^j - \eta^j(t)) = \sum_{j=1}^n \derivby t \log \frac {\eta^j(t)}{1 - \eta^j(t)} (u^j - \eta^j(t)) \ .
+    \sum_{j=1}^n \dot \eta^j(t) \frac{1}{\eta^j(t)(1 - \eta^j(t))} (u^j - \eta^j(t)) = \sum_{j=1}^n \derivby t \log \frac {\eta^j(t)}{1 - \eta^j(t)} (u^j - \eta^j(t))s \ .
 \end{multline}
 
 The curve $t \mapsto q(t) = p_{\eta(t)}$, $q(0) = p_{\eta}$, is an exponential geodesic with initial velocity
@@ -435,8 +435,43 @@ The m-transport is
    \sum_{j=1}^n \frac{\eta^j_3-\eta_1^j}{\eta_1^j(1-\eta_1^j)}(u^j-\eta_1^j) 
  \end{multline}
 
+\subsubsection{Gradient}
+\label{sec:gradient}
 
- END
+Let $F \colon \maxexpat V \to \reals$ be a smooth scalar field. The gradient of $F$ is a section  $\Grad F$ of the statistical bundle such that for all smooth curve $t \mapsto q(t) \in \maxexpat V$, with $q(t) = p_{\eta(t)}$ it holds
+\begin{equation}
+  \label{eq:gradient}
+  \derivby t F(q(t)) = \scalarat {q(t)} {\Grad F(q(t))}{\velocity q(t)} \ .
+\end{equation}
+
+Let us write $\hat F(\eta(t)) = F(q(t))$ and $\Grad F(q) = \sum_{j=1}^n \hat F_j(\eta) (u^j - \eta^j(t)$. From \cref{eq:32} we have
+\begin{equation}
+  \label{eq:55}
+  \velocity q(t) = \sum_{j=1}^n \derivby t \log \frac {\eta^j(t)}{1 - \eta^j(t)} (u^j - \eta^j(t)) \ .
+\end{equation}
+
+It follows
+\begin{multline}
+  \label{eq:54}
+  \derivby t \hat F(\eta(t)) = \scalarat {q(t)} {\Grad F(q(t))}{\velocity q(t)} = \\ \sum_{j=1}^n \eta^j(t)(1-\eta^j(t)) \hat F_j(\eta(t)) \derivby t \log \frac {\eta^j(t)}{1 - \eta^j(t)} = \sum_{j=1}^n \hat F_j(\eta(t)) \dot \eta^j(t) \ , 
+\end{multline}
+that is
+\begin{equation}
+  \label{eq:58}
+  \Grad F(p_\eta) = \sum_{j=1}^n \pderivby {\eta^j} \hat F(\eta) (u^j - \eta^j) \ .
+\end{equation}
+
+For example, if
+\begin{multline}
+  \label{eq:59}
+  F(p_\eta) = \KL {q}{p_\eta} = \entropyof q - \expectat q {\log p_\eta} = \\ \entropyof q - \expectat q {\sum_{j=1}^n \log \frac{\eta^j}{1-\eta^j} u^j - \sum_{j=1}^n \log \frac 1 {1 - \eta^j}} = \\ \entropyof q - \sum_{j=1}^n \log \frac{\eta^j}{1-\eta^j} q(j) - \sum_{j=1}^n \log \frac 1 {1 - \eta^j} \ ,
+\end{multline}
+then
+\begin{equation}
+  \label{eq:60}
+  \Grad F(p_\eta) = 
+\end{equation}
+END
 
 
 % \bibliographystyle{amsplain}
