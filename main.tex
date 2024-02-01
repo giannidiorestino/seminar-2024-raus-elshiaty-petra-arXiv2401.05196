@@ -438,22 +438,22 @@ The m-transport is
 \subsubsection{Gradient}
 \label{sec:gradient}
 
-Let $F \colon \maxexpat V \to \reals$ be a smooth scalar field. The gradient of $F$ is a section  $\Grad F$ of the statistical bundle such that for all smooth curve $t \mapsto q(t) \in \maxexpat V$, with $q(t) = p_{\eta(t)}$ it holds
+Let $F \colon \maxexpat V \to \reals$ be a smooth scalar field. The gradient of $F$ is a section  $\Grad F$ of the statistical bundle such that for all smooth curve $t \mapsto q(t) \in \maxexpat V$, that is, $q(t) = p_{\eta(t)}$ for some curve in the space of expectation parameters, it holds
 \begin{equation}
   \label{eq:gradient}
   \derivby t F(q(t)) = \scalarat {q(t)} {\Grad F(q(t))}{\velocity q(t)} \ .
 \end{equation}
 
-Let us write $\hat F(\eta(t)) = F(q(t))$ and $\Grad F(q) = \sum_{j=1}^n \hat F_j(\eta) (u^j - \eta^j(t)$. From \cref{eq:32} we have
+Let us write $\hat F(\eta) = F(q)$ and $\Grad F(q) = \sum_{j=1}^n \hat F_j(\eta) (u^j - \eta^j(t)$, provided $q = p_\eta$. From \cref{eq:32} we have
 \begin{equation}
   \label{eq:55}
-  \velocity q(t) = \sum_{j=1}^n \derivby t \log \frac {\eta^j(t)}{1 - \eta^j(t)} (u^j - \eta^j(t)) \ .
+  \velocity q(t) = \sum_{j=1}^n \frac{\dot \eta^j(t)} {\eta^j(t))(1 - \eta^j(t))} (u^j - \eta^j(t)) \ .
 \end{equation}
 
-It follows
+It follows from the expression of the inner product in \cref{eq:29} that 
 \begin{multline}
   \label{eq:54}
-  \derivby t \hat F(\eta(t)) = \scalarat {q(t)} {\Grad F(q(t))}{\velocity q(t)} = \\ \sum_{j=1}^n \eta^j(t)(1-\eta^j(t)) \hat F_j(\eta(t)) \derivby t \log \frac {\eta^j(t)}{1 - \eta^j(t)} = \sum_{j=1}^n \hat F_j(\eta(t)) \dot \eta^j(t) \ , 
+  \derivby t \hat F(\eta(t)) = \scalarat {q(t)} {\Grad F(q(t))}{\velocity q(t)} = \\ \sum_{j=1}^n \eta^j(t)(1-\eta^j(t)) \hat F_j(\eta(t)) \frac{\dot \eta^j(t)} {\eta^j(t))(1 - \eta^j(t))} (u^j - \eta^j(t)) = \sum_{j=1}^n \hat F_j(\eta(t)) \dot \eta^j(t) \ , 
 \end{multline}
 that is
 \begin{equation}
@@ -461,15 +461,29 @@ that is
   \Grad F(p_\eta) = \sum_{j=1}^n \pderivby {\eta^j} \hat F(\eta) (u^j - \eta^j) \ .
 \end{equation}
 
-For example, if
+For example, if $F$ is the KL divergence $\KL q \cdot$, $q \in \maxexpat {\set{0,1}^h}$,
 \begin{multline}
   \label{eq:59}
-  F(p_\eta) = \KL {q}{p_\eta} = \entropyof q - \expectat q {\log p_\eta} = \\ \entropyof q - \expectat q {\sum_{j=1}^n \log \frac{\eta^j}{1-\eta^j} u^j - \sum_{j=1}^n \log \frac 1 {1 - \eta^j}} = \\ \entropyof q - \sum_{j=1}^n \log \frac{\eta^j}{1-\eta^j} q(j) - \sum_{j=1}^n \log \frac 1 {1 - \eta^j} \ ,
+  F(p_\eta) = \KL {q}{p_\eta} = \entropyof q - \expectat q {\log p_\eta} = \\ \entropyof q - \expectat q {\sum_{j=1}^n \log \frac{\eta^j}{1-\eta^j} u^j - \sum_{j=1}^n \log \frac 1 {1 - \eta^j}} = \\ \entropyof q - \sum_{j=1}^n \log \frac{\eta^j}{1-\eta^j} \expectat q {u^j}  - \sum_{j=1}^n \log \frac 1 {1 - \eta^j} \ ,
 \end{multline}
 then
-\begin{equation}
+\begin{gather}
   \label{eq:60}
-  \Grad F(p_\eta) = 
+  \pderivby {\eta^j} \KL {q}{p_\eta} =  \frac 1 {\eta^j(1-\eta^j)}\left(\expectat q {u^j} - \eta^j\right) \ , \\
+  \label{eq:60b}
+  \Grad F(p_\eta) = \sum_{j=1}^n\frac1{\eta^j(1-\eta^j)}\left(\expectat q {u^j} - \eta^j\right)(u^j - \eta^j) \ .
+\end{gather}
+
+The equation for the gradient flow is
+\begin{multline}
+  \label{eq:56}
+  \sum_{j=1}^n \frac {\dot\eta^j(t)}{\eta^j(t)(1-\eta^j(t))}(u^j - \eta^j(t)) = \\ 
+  - \sum_{j=1}^n\frac1{\eta^j(t)(1-\eta^j(t))}\left(\expectat q {u^j} - \eta^j(t)\right)(u^j - \eta^j(t))
+\end{multline}
+and, in the expectation coordinates,
+\begin{equation}
+  \label{eq:57}
+\dot\eta^j(t) = \expectat q {u^j} - \eta^j(t) \ , \quad j=1,\dots,n \ .   
 \end{equation}
 END
 
