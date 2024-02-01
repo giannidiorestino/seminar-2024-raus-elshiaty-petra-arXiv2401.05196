@@ -10,6 +10,9 @@
 \usepackage{mathtools}
 \usepackage{natbib}
 
+\theoremstyle{remark}
+\newtheorem{example}{Example}
+
 \title{Seminar 1}
 \author{Giovanni Pistone}
 \date{\today}
@@ -461,15 +464,26 @@ that is
   \Grad F(p_\eta) = \sum_{j=1}^n \pderivby {\eta^j} \hat F(\eta) (u^j - \eta^j) \ .
 \end{equation}
 
-For example, if $F$ is the KL divergence $\KL q \cdot$, $q \in \maxexpat {\set{0,1}^h}$,
+The gradien flow equation $\velocity q(t) = - \Grad F(q(t))$ is
+\begin{equation}
+  \label{eq:61}
+  \sum_{j=1}^n \frac {\dot\eta^j(t)}{\eta^j(t)(1-\eta^j(t))}(u^j - \eta^j(t)) = - \sum_{j=1}^n \pderivby {\eta^j(t)} \hat F(\eta) (u^j - \eta^j(t)) \ ,
+\end{equation}
+that is, in the expectation coordinates,
+\begin{equation}
+  \label{eq:62}
+  \dot \eta^j(t) = - \eta^j(t)(1-\eta^j(t))\pderivby {\eta^j(t)} \hat F(\eta(t)) \ , \quad j=1,\dots,n \ .
+\end{equation}
+
+\begin{example} If $F$ is the KL divergence $\KL q \cdot$, $q \in \maxexpat {\set{0,1}^h}$,
 \begin{multline}
   \label{eq:59}
-  F(p_\eta) = \KL {q}{p_\eta} = \entropyof q - \expectat q {\log p_\eta} = \\ \entropyof q - \expectat q {\sum_{j=1}^n \log \frac{\eta^j}{1-\eta^j} u^j - \sum_{j=1}^n \log \frac 1 {1 - \eta^j}} = \\ \entropyof q - \sum_{j=1}^n \log \frac{\eta^j}{1-\eta^j} \expectat q {u^j}  - \sum_{j=1}^n \log \frac 1 {1 - \eta^j} \ ,
+  F(p_\eta) = \KL {q}{p_\eta} = \entropyof q - \expectat q {\log p_\eta} = \\ \entropyof q - \expectat q {\sum_{j=1}^n \log \frac{\eta^j}{1-\eta^j} u^j - \sum_{j=1}^n \log \frac 1 {1 - \eta^j}} = \\ \entropyof q - \sum_{j=1}^n \log \frac{\eta^j}{1-\eta^j} \expectat q {u^j}  + \sum_{j=1}^n \log \frac 1 {1 - \eta^j} \ ,
 \end{multline}
 then
 \begin{gather}
   \label{eq:60}
-  \pderivby {\eta^j} \KL {q}{p_\eta} =  \frac 1 {\eta^j(1-\eta^j)}\left(\expectat q {u^j} - \eta^j\right) \ , \\
+  \pderivby {\eta^j} \KL {q}{p_\eta} =  - \frac 1 {\eta^j(1-\eta^j)}\left(\expectat q {u^j} - \eta^j\right) \ , \\
   \label{eq:60b}
   \Grad F(p_\eta) = \sum_{j=1}^n\frac1{\eta^j(1-\eta^j)}\left(\expectat q {u^j} - \eta^j\right)(u^j - \eta^j) \ .
 \end{gather}
@@ -478,13 +492,24 @@ The equation for the gradient flow is
 \begin{multline}
   \label{eq:56}
   \sum_{j=1}^n \frac {\dot\eta^j(t)}{\eta^j(t)(1-\eta^j(t))}(u^j - \eta^j(t)) = \\ 
-  - \sum_{j=1}^n\frac1{\eta^j(t)(1-\eta^j(t))}\left(\expectat q {u^j} - \eta^j(t)\right)(u^j - \eta^j(t))
+  \sum_{j=1}^n\frac1{\eta^j(t)(1-\eta^j(t))}\left(\expectat q {u^j} - \eta^j(t)\right)(u^j - \eta^j(t))
 \end{multline}
 and, in the expectation coordinates,
 \begin{equation}
   \label{eq:57}
-\dot\eta^j(t) = \expectat q {u^j} - \eta^j(t) \ , \quad j=1,\dots,n \ .   
+\dot\eta^j(t) = \expectat q {u^j} - \eta^j(t) \ , \quad j=1,\dots,n \ ,   
 \end{equation}
+with solution
+\begin{equation}
+  \label{eq:63}
+  \eta^j(t) = \expectat q {u^j} + (\eta^j(0) - \expectat q {u^j}) \euler^{-t} \ .
+\end{equation}
+\end{example}
+
+\begin{example}
+  The following example is taken from the raus et al paper.
+\end{example}
+
 END
 
 
