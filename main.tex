@@ -10,6 +10,7 @@
 \usepackage{mathtools}
 \usepackage{natbib}
 
+\newcommand{\transposed}{\dagger}
 \theoremstyle{remark}
 \newtheorem{example}{Example}
 
@@ -237,7 +238,16 @@ If we define
   \label{eq:27}
   V = \spanof{u^1,\dots,u^n,1} = \setof{\sum_{j=1}^n \xi_j u^j + \xi_0}{\xi_0,\xi_1, \dots,xi_n \in \reals} \ ,
 \end{equation}
-then the exponential family is determined by the affine space $V$, $\maxexpat V$. The fibre at $p_\eta$ of the statistical bundle is
+then the exponential family is determined by the affine space $V$, $\maxexpat V$.
+
+The statistical bundle is
+\begin{equation}
+  \label{eq:66}
+  \expbundleat {V} = \
+  \setof {(q,v)}{q \in \maxexpat V, v \in V, \expectat q v = 0}
+\end{equation}
+
+The fibre at $p_\eta$ of the statistical bundle is
 \begin{equation}
   \label{eq:28}
   \expfibreat {p_\eta} V = \setof{\sum_{j=1}^n \xi_j(u^j - \eta^j)}{\xi_1,\dots,\xi_n \in \reals} \ .
@@ -272,8 +282,33 @@ Let us check the parallelogram law:
   \sum_{j=1}^n \log \frac {\eta^j_3(1 - \eta^j_1)}{\eta^j_1 (1- \eta_3^j)} (u^j - \eta^j_1) \ .
 \end{multline}
 
-\subsubsection{Exponential affine geodesic}
-\label{sec:expon-affine-geod}
+We construct now a parametrization of the statistical bundle with the expectation parameters. Consider the 1-to-1 mapping
+\begin{equation}
+  \label{eq:67}
+]0,1[^n \times \reals^n \ni (\eta,\xi) \mapsto (p_\eta,\sum_{j=1}^n \xi_j(u^j-\eta^j) \in \expbundleat V \ .
+\end{equation}
+The inverse is
+\begin{equation}
+  \label{eq:68}
+  \expbundleat V \ni (q,v) \mapsto (\eta,\xi) = \left(\expectat q u,G^{-1}(\eta) \scalarat {p_\eta}{v}{u-\eta}\right) \in ]0,1[^n \times \reals^n \ ,
+\end{equation}
+where
+\begin{gather}
+  G(\eta) =
+\begin{bmatrix}
+  \scalarat {p_{\eta}} {u^i-\eta^i}{u^j-\eta^j}
+\end{bmatrix}_{i.j=1}^n = \diagof{\eta^j(1-\eta^j) \middle| j = 1,\dots, n} \ , \\
+G^{-1}(\eta)  = \diagof{\frac1{\eta^j(1-\eta^j)} \middle| j = 1,\dots, n} \ , \\
+\scalarat {p_\eta}{v}{u-\eta} = \left(\scalarat {p_\eta}{v}{u^j-\eta^j} \middle| j=1,\dots,n \right) \ .
+\end{gather}
+Notice that the inner product of the fiber at $\eta$ is
+\begin{equation}
+  \label{eq:69}
+  g_\eta(\xi^1,\xi^2) = {\xi^1}^\transposed G(\eta) \xi^2 = \sum_{j=1}^n \eta^j(1-\eta_j) \xi^1_j \xi^2_j \ .
+\end{equation}
+
+The parallel transport is the identity. 
+
 The velocity of a curve $t \mapsto p_{\eta(t)}$ expressed by the expectation parameter follows from \cref{eq:exponential-family},
 \begin{multline}
   \label{eq:32}
@@ -282,6 +317,14 @@ The velocity of a curve $t \mapsto p_{\eta(t)}$ expressed by the expectation par
     \sum_{j=1}^n \dot \eta^j(t) \frac{1}{\eta^j(t)(1 - \eta^j(t))} (u^j - \eta^j(t)) = \sum_{j=1}^n \derivby t \log \frac {\eta^j(t)}{1 - \eta^j(t)} (u^j - \eta^j(t))s \ .
 \end{multline}
 
+In the parameterization, the velocity $t \mapsto \eta(t)$ is
+\begin{equation}
+  \label{eq:70}
+  t \mapsto \velocity \eta(t) = \left( \frac{\dot\eta^j(t)}{\eta^j(t)(1-\eta^j(t))} \middle| j = 1,\dots,n \right) 
+\end{equation}
+
+\subsubsection{Exponential affine geodesic}
+\label{sec:expon-affine-geod}
 The curve $t \mapsto q(t) = p_{\eta(t)}$, $q(0) = p_{\eta}$, is an exponential geodesic with initial velocity
 \begin{equation}
   \label{eq:50}
@@ -325,9 +368,29 @@ Notice the connection between the exponential displacement and the velocity of t
   s_{q(0)}(q(1)) = \log \frac {q(t)}{q(0)} - \expectat {q(0)} {\log \frac {q(t)}{q(0)}} = \sum_{j=1}^n \xi_j(u^j - \eta^j) = \velocity q(0) \ .
 \end{equation}
 
+\subsubsection{Second order structure}
+\label{sec:second-order-struct}
+
+Consider a curve in the parametrized statistical bundle,
+\begin{gather}
+  \label{eq:71}
+  t \mapsto (\eta(t),\xi(t)) \ , \\
+  t \mapsto \left(p_{\eta(t)},\sum_{j=1}^n \xi_j(t)(u^j-\eta^j(t)\right) \ .
+  \end{gather}
+  Fix a reference point $\eta_0$, and compute the chart of the curve,
+  \begin{equation}
+    \label{eq:72}
+   t \mapsto \left(s_{\eta_0}(\eta(t)),\sum_{j=1}^n \xi_j(t)(u^j-\eta^j_0)\right) \ .
+ \end{equation}
+ The derivative is
+ \begin{equation}
+   \label{eq:73}
+   t \mapsto 
+ \end{equation}
+
 \subsubsection{Dual of the exponential transport and m-geodesic}
 \label{sec:dual-expon-transp}
-Let us compute the dual $\mtransport {p_{\eta_2}}{p_{\eta_1}} = \left(\etransport {p_{\eta_1}}{p_{\eta_2}}\right)^\dagger$ of the exponential transport. Other terms in use are expectation transport or mixture transport.
+Let us compute the dual $\mtransport {p_{\eta_2}}{p_{\eta_1}} = \left(\etransport {p_{\eta_1}}{p_{\eta_2}}\right)^\transposed$ of the exponential transport. Other terms in use are expectation transport or mixture transport.
 
 Let be given
 \begin{equation}
@@ -342,7 +405,7 @@ so that, from \cref{eq:29},
    \sum_{j=1}^n \eta^j_2(1-\eta^j_2) \xi_j^1 \xi_j^2 \ . 
  \end{multline}
 
-If $\mtransport {p_{\eta_2}} {p_{\eta_1}} = \left(\etransport {p_{\eta_1}} {p_{\eta_2}}\right)^\dagger$,
+If $\mtransport {p_{\eta_2}} {p_{\eta_1}} = \left(\etransport {p_{\eta_1}} {p_{\eta_2}}\right)^\transposed$,
 \begin{multline}
   \label{eq:39a}
   \scalarat {p_{\eta_1}} {\sum_{j=1}^n \xi_j^1(u^j - \eta^j_1)} {\mtransport {p_{\eta_2}} {p_{\eta_1}}\sum_{j=1}^n \xi_j^2(u^j - \eta^j_2)} = \\
@@ -426,9 +489,8 @@ The solution is
 The m-transport is
 \begin{equation}
   \label{eq:53}
-  S^\dagger _{p_{\eta_1}}(p_{\eta_2}) = \sum_{j=1}^n \frac{\eta^j_2-\eta^j_1}{\eta^j_1(1-\eta^j_1)} (u^j - \eta^j_1) \ . 
+  S^\transposed _{p_{\eta_1}}(p_{\eta_2}) = \sum_{j=1}^n \frac{\eta^j_2-\eta^j_1}{\eta^j_1(1-\eta^j_1)} (u^j - \eta^j_1) \ . 
 \end{equation}
- %\includegraphics[width=\textwidth]{scans/scan-1.pdf}
 
  Let us check the parallelogram law. From \cref{eq:39a},
  \begin{multline}
